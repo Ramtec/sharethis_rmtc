@@ -1,0 +1,84 @@
+<?php
+/**
+ * @file
+ * Module file
+ */
+
+/**
+ * Implement hook_menu().
+ */
+function sharethis_rmtc_menu() {
+
+ 	/*$items['admin/config/services'] = array(
+    'title' => 'Custom',
+    'description' => 'Custom Module.',
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  	);*/
+
+    $items['admin/config/services/fbwall'] = array(
+    'title' => 'Sharethis Config',
+    'description' => 'Configuration for Sharethis block',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('sharethis_rmtc_form'),
+    'access arguments' => array('administer users'),
+    'file' => 'sharethis_rmtc.inc',
+    );
+
+    return $items;
+}
+ 
+/**
+* Implements hook_block_info().
+*/
+function sharethis_rmtc_block_info() {
+	$blocks = array();
+	
+	$blocks['sharethis'] = array(
+	'info' => t('Sharethis block'),
+	'cache' => DRUPAL_NO_CACHE,
+	);
+	
+	return $blocks;	
+}
+
+ /**
+ * Implements hook_block_view().
+ */
+function sharethis_rmtc_block_view($block_name = '') {
+	if ($block_name == 'sharethis') {	
+
+		$settings = variable_get('sharethis_rmtc_settings', '');
+
+		$current_path = $GLOBALS['base_url']. '/' . drupal_get_path_alias($_GET['q']);
+
+
+		$menu = '<ul id="sharethis_buttons">';
+
+		if($settings['facebook'] != 0) {
+			$menu .= '<li class="sharethis_facebook"><a target="_blank" href="http://www.facebook.com/share.php?u=' .$current_path. '">Partager</a></li>';
+		}
+		if($settings['twitter'] != 0) {
+			$menu .= '<li class="sharethis_twitter"><a target="_blank" href="http://twitter.com/home?status=' .$current_path. '">Tweeter</a></li>';
+		}
+		if($settings['mail'] != 0) {
+			$menu .= '<li class="sharethis_mail"><a target="_blank" href="mailto:?subject=' .$settings['mail_subject']. '&amp;body=Un(e) ami(e) vous recommande une page : ' .$current_path. '">Envoyer</a></li>';
+		}
+		if($settings['print'] != 0) {
+			$menu .= '<li class="sharethis_print"><a href="javascript:print();">Imprimer</a></li>';
+		}
+		$menu .= '</ul>';
+
+		
+		// Creation of the block
+		$block = array(
+ 		'subject' => t('Sharethis block'),
+ 		'content' => $menu,
+		);
+		
+		return $block; 		
+	}
+}
+

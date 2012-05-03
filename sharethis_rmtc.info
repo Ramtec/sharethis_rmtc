@@ -1,0 +1,7 @@
+name = sharethis_rmtc
+description = Sharethis custom block
+package = facebook plugin
+core = 7.x
+
+
+ 

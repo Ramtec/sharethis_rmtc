@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Uninstall variable for the fbwall module
+ */
+
+ function sharethis_rmtc_install() {
+  // Add Default variables.
+  	$settings = array(
+  		'facebook' => 0,
+  		'twitter' => 0,
+  		'print' => 0,
+  		'mail' => 0,
+  		'mail_subject' => 'No subject',
+	);
+	variable_set('sharethis_rmtc_settings', $settings);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function sharethis_rmtc_uninstall() {
+  // Delete variables.
+	variable_del('sharethis_rmtc_settings');
+}
