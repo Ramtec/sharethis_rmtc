@@ -1,7 +1,7 @@
 name = sharethis_rmtc
 description = Sharethis custom block facebook twitter print
-package = facebook plugin
+package = Social plugin
 core = 7.x
 
 
- 
+

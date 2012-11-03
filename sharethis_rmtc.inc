@@ -1,20 +1,20 @@
-<?php 
+<?php
 
 /**
  * @file
- * Form builder for fbwall configuration page
+ * Form builder for sharethis_rmtc configuration page
  */
 
 /**
- * fbwall Form.
- */ 
+ * Block form configuration.
+ */
 function sharethis_rmtc_form($form, &$form_state) {
 	$settings = variable_get('sharethis_rmtc_settings');
 
 
 	$options = array(
 		'1' => t('yes'),
-		'0' => t('no'), 
+		'0' => t('no'),
 	);
 
 	$form['sharethis_rmtc_facebook'] = array(
@@ -27,7 +27,7 @@ function sharethis_rmtc_form($form, &$form_state) {
 
 	$options = array(
 	'1' => t('yes'),
-	'0' => t('no'), 
+	'0' => t('no'),
 	);
 
 	$form['sharethis_rmtc_twitter'] = array(
@@ -48,7 +48,7 @@ function sharethis_rmtc_form($form, &$form_state) {
 
 	$options = array(
 	'1' => t('yes'),
-	'0' => t('no'), 
+	'0' => t('no'),
 	);
 
 	$form['sharethis_rmtc_mail'] = array(
@@ -61,7 +61,7 @@ function sharethis_rmtc_form($form, &$form_state) {
 
 	$options = array(
 	'1' => t('yes'),
-	'0' => t('no'), 
+	'0' => t('no'),
 	);
 
 	$form['sharethis_rmtc_print'] = array(
@@ -71,14 +71,14 @@ function sharethis_rmtc_form($form, &$form_state) {
 		'#description' => t('Would you like to display Print button ?'),
 		'#default_value' => $settings['print'],
 	);
-	
+
 	// Submit button
 	$form['submit'] = array(
 		'#type' => 'submit',
 		'#value' => t('Save settings'),
 	);
-	
-	return $form;	
+
+	return $form;
 }
 
 /**

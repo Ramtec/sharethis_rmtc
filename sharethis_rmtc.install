@@ -2,9 +2,12 @@
 
 /**
  * @file
- * Uninstall variable for the fbwall module
+ * Uninstall variable for the sharethis_rmtc module
  */
 
+/**
+ * Implements hook_install().
+ */
  function sharethis_rmtc_install() {
   // Add Default variables.
   	$settings = array(
